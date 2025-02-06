@@ -1,31 +1,35 @@
-# **Turf-booking-system**
+# 🏆 Turf Booking System
 
-## overview
+## 📌 Overview
+The **Turf Booking System** is a web-based platform that allows users to **book sports turfs online** by selecting available slots. The system includes **user authentication, a booking form, Google Calendar integration, email confirmations, QR code generation, and an admin panel** for turf owners to manage reservations.
 
-A website which is used to book slots on particular date for the user
-## Project overflow:
+---
 
-1. **Login/Signup** page for user
+## 🎯 Key Features
 
-2. A **Booking form** containing slots of dates and timings
+### ✅ For Users
+- **Login/Signup** (JWT authentication)
+- **Book a Turf** (select date & time)
+- **Google Calendar Integration** (auto-add booking to calendar)
+- **Receive Confirmation** (via email or QR code)
+- **Cancel/Modify Bookings**
 
-3. A **QR code** or confirmation e-mail send to the user email
+### ✅ For Turf Owners (Admin Panel)
+- **View All Bookings** (date & time-wise)
+- **Approve/Reject Requests**
+- **Manage Users**
 
-4. An **Admin panel** to check the booked slots by the turf owners
+---
 
-## Tech Stack
- 1. **React** -for frontend
+## 🛠 Tech Stack
 
- 2. **Node and Express js** -for backend
+| Layer         | Technology Used |
+|--------------|----------------|
+| **Frontend** | React.js (Vite) |
+| **Backend**  | Node.js, Express.js |
+| **Database** | MongoDB|
+| **Email & QR Code** | Nodemailer & qrcode |
+| **Calendar API** | Google Calendar API |
 
- 3. **Mongodb** -for Database
- 
-
-
-
-
-
-
-
-
+---
 
