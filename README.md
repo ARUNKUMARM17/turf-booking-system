@@ -32,9 +32,14 @@ The **Turf Booking System** is a web-based platform that allows users to **book 
 | **Calendar API** | Google Calendar API |
 
 ## images
-### login page
+## Login page
+
 <image src="./imgs/Page_1.png">
 
 ##  Register page
-<image src="./imgs/Page_2.png">,
 
+<image src="./imgs/Page_2.png">
+
+## Slot booking Page
+
+ <image src="./imgs/Page_3.png">
