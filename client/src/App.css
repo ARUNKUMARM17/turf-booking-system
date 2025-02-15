@@ -1,42 +1,99 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: justify;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@import "tailwindcss";
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #b688d9; /* Dark Green Turf Theme */
+    margin: 0;
+    padding: 0;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .login-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    border: 3px solid #4caf50; /* Turf Green */
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+  
+  .login-box h1 {
+    color: #2e7d32;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #4caf50;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  .input-field:focus {
+    border-color: #1b5e20;
+    box-shadow: 0 0 5px #1b5e20;
+  }
+  
+  .button-primary {
+    width: 100%;
+    padding: 10px;
+    background: #388e3c;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .button-primary:hover {
+    background: #2e7d32;
+  }
+  
+  .google-login {
+    width: 100%;
+    padding: 10px;
+    background: #db4437;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .google-login:hover {
+    background: #c1351d;
+  }
+  
+  .back-link {
+    display: flex;
+    align-items: center;
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .back-link:hover {
+    color: #1b5e20;
+  }
+  
+  .toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+  
