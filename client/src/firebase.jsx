@@ -1,34 +1,39 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import {GoogleAuthProvider,getAuth,signInWithPopup,signOut} from "firebase/auth";
-// import { getAnalytics } from "firebase/analytics";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAk2G6c-tJK8BLuhQO3t4QjhHXaWWr8JV0",
-  authDomain: "turf-booking-system-16212.firebaseapp.com",
-  projectId: "turf-booking-system-16212",
-  storageBucket: "turf-booking-system-16212.firebasestorage.app",
-  messagingSenderId: "726264214235",
-  appId: "1:726264214235:web:603e936cfd5eda563852fe",
-  measurementId: "G-5F0X081FWC"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
-const auth=getAuth(app);
+const auth = getAuth(app);
 const db = getFirestore(app);
-const googleprovider=new GoogleAuthProvider();
-const signInwithGoogle=async()=>{
-    try{
-        const result=await signInWithPopup(auth,googleprovider);
-        const user=result.user;
-        console.log(result);
+const googleProvider = new GoogleAuthProvider();
+
+const logout = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error("Logout Error:", error);
+  }
+};
+
+const signInwithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      console.log(result);
+    } catch (error) {
+      console.error("Google Sign-In Error:", error);
+      alert(error.message);
     }
-    catch(error){
-        console.log(error);
-        alert(error.message);
-    }
-    }
-    const logout=()=>{
-        signOut(auth);
-    }
-export {app,auth,db,signInwithGoogle,logout};
-// const analytics = getAnalytics(app);
+  };
+  
+  export { app, auth, db, signInwithGoogle, logout };
+  
