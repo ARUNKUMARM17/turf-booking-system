@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdArrowBack, MdLogout } from "react-icons/md";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const auth = getAuth();
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     // Check if user is logged in, otherwise redirect to login
@@ -16,7 +19,6 @@ const HomePage = () => {
         navigate('/login'); // Redirect if not logged in
       }
     });
-
     return () => unsubscribe();
   }, [auth, navigate]);
 
@@ -31,37 +33,44 @@ const HomePage = () => {
   };
 
   const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    navigate('/slots', { state: { date } });
+  };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-300 to-purple-400 p-6">
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-green-400 to-blue-600 p-6 text-white">
       {/* Top Navigation */}
       <div className="absolute top-5 left-5">
-        {/* Back to Register Button */}
         <button
           onClick={() => navigate('/register')}
-          className="flex items-center text-sm font-semibold text-white bg-purple-600 px-4 py-2 rounded-lg shadow-md hover:bg-purple-700 transition-all"
+          className="flex items-center text-sm font-semibold bg-white text-gray-800 px-4 py-2 rounded-lg shadow-md hover:bg-gray-200 transition-all"
         >
           <MdArrowBack className="mr-1" /> Register
         </button>
       </div>
 
       <div className="absolute top-5 right-5">
-        {/* Logout Button */}
         <button
           onClick={handleLogout}
-          className="flex items-center text-sm font-semibold text-white bg-red-500 px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-all"
+          className="flex items-center text-sm font-semibold bg-red-500 px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-all"
         >
           <MdLogout className="mr-1" /> Logout
         </button>
       </div>
 
       {/* Main Content */}
-      <h1 className="text-4xl font-bold text-white my-6">Book Your Turf</h1>
-      <Calendar
-        minDate={today}
-        onClickDay={(date) => navigate('/slots', { state: { date } })}
-        className="border border-gray-400 rounded-lg shadow-lg p-2 bg-white"
-      />
+      <h1 className="text-4xl font-bold my-6">Book Your Turf</h1>
+      <div className="bg-white p-6 rounded-lg shadow-xl text-gray-800">
+        <Calendar
+          minDate={today}
+          tileDisabled={({ date }) => date < today}
+          onClickDay={handleDateChange}
+          className="border border-gray-300 rounded-lg shadow-md p-4"
+        />
+      </div>
     </div>
   );
 };
